@@ -18,7 +18,14 @@ fi
 USER_UID=${HOST_UID:=$UID}
 USER_GID=${HOST_GID:=$GID}
 
-# Create user
+# Create Group
+GROUP_INFO=$(getent group ${USER_GID})
+if [ -z "$GROUP_INFO" ]
+then
+	groupadd --gid ${USER_GID} ${USER}
+fi
+
+# Create User
 useradd ${USER} --shell /bin/bash --create-home \
 	--uid ${USER_UID} --gid ${USER_GID} > /dev/null 2>&1
 
