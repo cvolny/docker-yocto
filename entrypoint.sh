@@ -18,7 +18,7 @@ fi
 USER_UID=${HOST_UID:=$UID}
 USER_GID=${HOST_GID:=$GID}
 
-# Create Group
+# Create Group (if needed)
 GROUP_INFO=$(getent group ${USER_GID})
 if [ -z "$GROUP_INFO" ]
 then
